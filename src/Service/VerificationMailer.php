@@ -19,8 +19,8 @@ class VerificationMailer
     }
 
     /**
-     * Important: the confirmation e-mail is dispatched asynchronously via Messenger.
-     * Note: registration itself does not wait for SMTP.
+     * Important: the confirmation e-mail is sent in the same request (sync Messenger transport).
+     * Note: no terminal worker is required on cPanel.
      * Nota bene: configure MAILER_DSN to actually deliver the message.
      */
     public function sendConfirmation(User $user): void
@@ -43,7 +43,7 @@ class VerificationMailer
 
         $this->mailer->send($email);
 
-        $this->logger->info('Queued confirmation e-mail for {email} with link {url}', [
+        $this->logger->info('Sent confirmation e-mail for {email} with link {url}', [
             'email' => $user->getEmail(),
             'url' => $verifyUrl,
         ]);

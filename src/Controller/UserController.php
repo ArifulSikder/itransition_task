@@ -63,7 +63,7 @@ class UserController extends AbstractController
         }
 
         $verificationMailer->sendConfirmation($user);
-        $this->addFlash('success', 'Confirmation e-mail queued. Check your Mailtrap inbox, then click the link.');
+        $this->addFlash('success', 'Confirmation e-mail sent. Check your Mailtrap inbox, then click the link.');
 
         return $this->redirectToRoute('app_users');
     }
