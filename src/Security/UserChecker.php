@@ -26,7 +26,7 @@ class UserChecker implements UserCheckerInterface
         }
 
         if ($user->isUnverified()) {
-            throw new CustomUserMessageAccountStatusException('Please confirm your e-mail before logging in. Check your Mailtrap inbox.');
+            throw new CustomUserMessageAccountStatusException('Please confirm your e-mail before logging in. Check your inbox.');
         }
     }
 
