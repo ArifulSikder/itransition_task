@@ -1,3 +1,7 @@
 body {
     /* Bootstrap handles layout. Keep this file empty of decorative backgrounds. */
 }
+
+.auth-form {
+    max-width: 22rem;
+}

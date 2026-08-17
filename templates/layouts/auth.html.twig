@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body_class %}bg-white{% endblock %}
+
+{% block layout %}
+<main class="container-fluid px-0">
+    <div class="row g-0 min-vh-100">
+        <div class="col-12 col-lg-6 d-flex align-items-center justify-content-center py-5 px-3">
+            <div class="auth-form w-100">
+                <div class="text-primary fw-semibold mb-4">User Management</div>
+
+                {% block flashes %}
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endblock %}
+
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+        <div class="col-lg-6 d-none d-lg-flex bg-primary text-white align-items-center p-5">
+            <div>
+                <p class="text-uppercase small mb-2 opacity-75">{% block auth_aside_kicker %}Accounts{% endblock %}</p>
+                <h2 class="h4 mb-2">{% block auth_aside_title %}User Management{% endblock %}</h2>
+                <p class="mb-0 opacity-75">{% block auth_aside_text %}{% endblock %}</p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

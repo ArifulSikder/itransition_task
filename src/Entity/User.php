@@ -163,6 +163,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->status === UserStatus::Blocked;
     }
 
+    public function isActive(): bool
+    {
+        return $this->status === UserStatus::Active;
+    }
+
+    public function isUnverified(): bool
+    {
+        return $this->status === UserStatus::Unverified;
+    }
+
     public function getUserIdentifier(): string
     {
         return $this->email;
