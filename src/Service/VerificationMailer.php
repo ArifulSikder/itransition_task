@@ -32,7 +32,7 @@ class VerificationMailer
         );
 
         $email = (new TemplatedEmail())
-            ->from(new Address('noreply@user.com', 'User Management'))
+            ->from(new Address('itransition@arifulsikder.com', 'User Management'))
             ->to($user->getEmail())
             ->subject('Confirm your e-mail address')
             ->htmlTemplate('emails/confirm.html.twig')
