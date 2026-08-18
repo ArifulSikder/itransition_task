@@ -52,7 +52,7 @@ class RegistrationController extends AbstractController
             }
 
             $verificationMailer->sendConfirmation($user);
-            $this->addFlash('success', 'Registration successful. Confirm your e-mail before you can log in.');
+            $this->addFlash('success', 'Registration successful. You can log in now, even before confirming your e-mail.');
 
             return $this->redirectToRoute('app_login');
         }

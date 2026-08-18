@@ -64,7 +64,7 @@ class AccountGuardSubscriber implements EventSubscriberInterface
             $this->tokenStorage->setToken(null);
             $request->getSession()->getFlashBag()->add(
                 'warning',
-                'Your account is blocked, deleted, or not confirmed. Please log in again.',
+                'Your account is blocked or deleted. Please log in again.',
             );
 
             $event->setResponse(new RedirectResponse($this->urlGenerator->generate('app_login')));
@@ -92,13 +92,13 @@ class AccountGuardSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * Note: deleted users are gone; blocked and unverified users cannot continue.
+     * Note: deleted users are gone; blocked users cannot continue.
      * Important: these cases redirect to the login page.
-     * Nota bene: only active users may use the management table.
+     * Nota bene: unverified users may still use the management table.
      */
     private function mustForceLogin(?User $user): bool
     {
-        return $user === null || $user->isBlocked() || $user->isUnverified();
+        return $user === null || $user->isBlocked();
     }
 
 }
