@@ -11,8 +11,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class UserChecker implements UserCheckerInterface
 {
     /**
-     * Important: blocked and unverified accounts must not authenticate.
-     * Note: the confirmation e-mail is what promotes unverified to active.
+     * Important: only blocked accounts are refused at login.
+     * Note: unverified users may log in and manage the table.
      * Nota bene: this runs on login, before the session is created.
      */
     public function checkPreAuth(UserInterface $user): void
@@ -23,10 +23,6 @@ class UserChecker implements UserCheckerInterface
 
         if ($user->isBlocked()) {
             throw new CustomUserMessageAccountStatusException('Your account is blocked.');
-        }
-
-        if ($user->isUnverified()) {
-            throw new CustomUserMessageAccountStatusException('Please confirm your e-mail before logging in. Check your inbox.');
         }
     }
 
